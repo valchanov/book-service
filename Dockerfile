@@ -10,7 +10,7 @@ COPY --chown=gradle:gradle src $APP_HOME/src
 RUN gradle build --no-daemon
 
 # Package stage
-FROM openjdk:8-jre-slim
+FROM openjdk:17-alpine
 ARG BUILD_HOME
 ENV APP_HOME=$BUILD_HOME
 COPY --from=build-image $APP_HOME/build/libs/book-service-0.0.1-SNAPSHOT.jar app.jar
