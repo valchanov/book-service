@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class BookService {
@@ -23,12 +20,12 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public Mono<Book> createBook(Book book) {
+    public Mono<Book> saveBook(Book book) {
         return bookRepository.save(book);
     }
 
-    public void deleteBook(Long id) {
-        bookRepository.deleteById(id);
+    public Mono<Void> deleteBook(Long id) {
+        return bookRepository.deleteById(id);
     }
 
 }
