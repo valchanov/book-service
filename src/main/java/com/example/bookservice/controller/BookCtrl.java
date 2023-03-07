@@ -42,7 +42,7 @@ public class BookCtrl {
         return bookService.saveBook(book);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Mono<ResponseEntity<Book>> updateBook(@PathVariable Long id, @RequestBody Book book) {
         return bookService.findBookById(id)
                           .flatMap(existingBook -> {
@@ -56,7 +56,7 @@ public class BookCtrl {
                                                         .build());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deleteBook(@PathVariable Long id) {
         return bookService.findBookById(id)
                           .flatMap(book -> bookService.deleteBook(id)
