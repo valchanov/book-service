@@ -1,0 +1,12 @@
+scrape_configs:
+  - job_name: 'springboot-book-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['springboot-book-service:8080']
+rule_files:
+  - 'rules.yml'
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
